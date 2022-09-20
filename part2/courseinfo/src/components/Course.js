@@ -15,8 +15,7 @@ const Course = ({ course }) => {
 					<li key={part.id}>
 						{part.name} {part.exercises}
 					</li>
-				))}
-				<li>
+				))}				<li>
 					<strong>total of {sum} exercises</strong>
 				</li>
 			</ul>

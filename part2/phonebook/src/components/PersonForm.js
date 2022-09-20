@@ -1,16 +1,15 @@
-const Filter = ({onSubmit, newName, newNum, onChangePerson, onChangeNum}) => {
+const Filter = (props) => {
 	return (
-		<form onSubmit={onSubmit}>
-        <div>
-		name: <input value={newName} onChange={onChangePerson}/>
-		number: <input value={newNum} onChange={onChangeNum}/>
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+		<form onSubmit={props.onSubmit}>
+			<div>
+				name: <input value={props.name} onChange={props.onChangePerson} />
+				number: <input value={props.number} onChange={props.onChangeNum} />
+			</div>
+			<div>
+				<button type="submit">add</button>
+			</div>
+		</form>
 	)
-  }
+}
 
-  export default Filter
-
+export default Filter

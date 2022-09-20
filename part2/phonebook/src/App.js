@@ -51,26 +51,26 @@ const App = () => {
   }
 
   const personsToShow = find.length === 0
-  ? persons
-  : persons.filter(person => person.name.toLowerCase().includes(find.toLowerCase()))
+    ? persons
+    : persons.filter(person => person.name.toLowerCase().includes(find.toLowerCase()))
 
 
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter onChange={handleFindChange}/>
+      <Filter onChange={handleFindChange} />
       <h3>add a new</h3>
       <PersonForm
         onSubmit={addPerson}
-        newName={newName}
-        newNum={newNum}
-        onChangePerson = {handlePersonChange}
-        onChangeNum = {handleNumberChange}
+        name={newName}
+        number={newNum}
+        onChangePerson={handlePersonChange}
+        onChangeNum={handleNumberChange}
       />
       <h3>Numbers</h3>
       <ul>
         {personsToShow.map(person =>
-        <Persons key={person.id} person={person} />)}
+          <Persons key={person.id} person={person} />)}
       </ul>
       {/* <div>debug: {newName}</div> */}
     </div>
