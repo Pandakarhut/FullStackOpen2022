@@ -33,7 +33,7 @@ console.log(division)
 
 //dob
 const personOne = {
-	name: 'Joonas',
+	name: 'Peter',
 	age: 32,
 	address: {
 		city: Helsinki,
@@ -42,7 +42,7 @@ const personOne = {
 }
 
 const personTwo = {
-	name: 'Jing',
+	name: 'Lu',
 	age: 23,
 	favFood: Watermelon,
 	address: {
