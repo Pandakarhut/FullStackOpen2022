@@ -1,8 +1,10 @@
-const Filter = (props) => {
+const PersonForm = (props) => {
 	return (
 		<form onSubmit={props.onSubmit}>
 			<div>
 				name: <input value={props.name} onChange={props.onChangePerson} />
+			</div>
+			<div>
 				number: <input value={props.number} onChange={props.onChangeNum} />
 			</div>
 			<div>
@@ -12,4 +14,4 @@ const Filter = (props) => {
 	)
 }
 
-export default Filter
+export default PersonForm
