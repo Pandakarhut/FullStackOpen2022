@@ -50,6 +50,9 @@ const App = () => {
 			setNewName('')
 			setNewNum('')
 			setMessage(`Added ${newName}`)
+			setTimeout(() => {
+				setMessage(null)
+			}, 5000)
 		},)
     }
   }
@@ -61,6 +64,9 @@ const App = () => {
 		.then(() => {
 			setPersons(persons.filter(person => person.id !== id))
 			setMessage(`Deleted ${name}`)
+			setTimeout(() => {
+				setMessage(null)
+			}, 5000)
 		},)
 	}
   }

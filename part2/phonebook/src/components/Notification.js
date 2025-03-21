@@ -15,6 +15,16 @@ const errorStyle = {
 	borderStyle: 'solid',
 	borderRadius: 5,
 	padding: 10,
+	marginBottom: 10,
+}
+
+const alertStyle = {
+	color: 'black',
+	background: 'lightgrey',
+	fontSize: 20,
+	borderStyle: 'solid',
+	borderRadius: 5,
+	padding: 10,
 	marginBottom: 10
 }
 
@@ -26,6 +36,14 @@ const Notification = ({message}) => {
 	if (message.includes('error')){
 		return (
 			<div style={errorStyle} className="error">
+			{message}
+		</div>
+		)
+	}
+
+	if (message.includes('added') || message.includes('Deleted')){
+		return (
+			<div style={alertStyle} className="alert">
 			{message}
 		</div>
 		)

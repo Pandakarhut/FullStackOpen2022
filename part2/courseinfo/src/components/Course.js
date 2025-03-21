@@ -1,11 +1,8 @@
 import React from 'react'
 
 const Course = ({ course }) => {
-	const initial = 0;
-	const sum = course.parts.reduce(
-		(preVal, curVal) => preVal + curVal.exercises,
-		initial
-	);
+	// const initial = 0;
+	const sum = course.parts.reduce((preVal, curVal) => preVal + curVal.exercises, 0);
 
 	return (
 		<div>
@@ -15,7 +12,8 @@ const Course = ({ course }) => {
 					<li key={part.id}>
 						{part.name} {part.exercises}
 					</li>
-				))}				<li>
+				))}
+				<li>
 					<strong>total of {sum} exercises</strong>
 				</li>
 			</ul>
