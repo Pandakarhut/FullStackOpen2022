@@ -1,7 +1,12 @@
 const express = require('express')
+const morgan = require('morgan')
 const app = express()
 
 app.use(express.json())
+
+morgan.token('body', (req) => JSON.stringify(req.body));
+
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'));
 
 let persons = [
     {
@@ -27,10 +32,9 @@ let persons = [
 	]
 
 app.get('/info', (request, response) => {
-	const personCount = persons.length
 	const currentTime = new Date().toString()
 	response.send(`
-		<p>Phonebook has info for ${personCount} people</p>
+		<p>Phonebook has info for ${persons.length} people</p>
 		<p>${currentTime}</p>
 		`)
 })
@@ -46,6 +50,7 @@ app.get('/api/persons/:id', (request, response) => {
 		response.json(person)
 	}
 	else {
+		response.statusMessage = 'Person not found'
 		response.status(404).end()
 	}
 })
@@ -66,28 +71,45 @@ const randomId = () => {
 
 app.post('/api/persons', (request, response) => {
 	const body = request.body
-	const exists = persons.some((person) => person.name === body.name)
+	const existName = persons.some((person) => person.name === body.name)
+	const existNumber = persons.some((person) => person.number === body.number)
+
+
 	if (!body.name || !body.number) {
 		return response.status(400).json({
 			error: 'name or number missing'
 		})
 	}
-	if (exists) {
+
+	if (existName) {
 		return response.status(400).json({
 			error: 'name must be unique'
 		})
 	}
+
+	if (existNumber) {
+		return response.status(400).json({
+			error: 'number must be unique'
+		})
+	}
+
 	const person = {
 		id: randomId(),
 		name: body.name,
 		number: body.number
 	}
+
 	persons = persons.concat(person)
 	response.json(person)
 }
 )
 
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
+
 const PORT = 3001
 app.listen(PORT, () => {
-	console.log(`Server running on port ${PORT}`)
+	console.log(`Server running on http://localhost:${PORT}`)
 })
