@@ -109,7 +109,7 @@ app.use((req, res, next) => {
     next();
 });
 
-const PORT = 3001
+const PORT = process.envPORT || 3001
 app.listen(PORT, () => {
-	console.log(`Server running on http://localhost:${PORT}`)
+console.log(`Server running on http://localhost:${PORT}`)
 })
