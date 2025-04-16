@@ -1,16 +1,11 @@
 // const http = require('http')
-const express = require('express')
-const app = express()
-const cors = require('cors')
-
-// middleware to parse JSON request body
-app.use(express.json())
 
 // middleware to enable CORS cross-origin resource sharing
-app.use(cors())
+// const cors = require('cors'
+// app.use(cors())
 
-// middleware to show static content from the dist folder
-app.use(express.static('dist'))
+const express = require('express')
+const app = express()
 
 let notes = [
 	{
@@ -39,6 +34,10 @@ const requestLogger = (request, response, next) => {
   }
 
 app.use(requestLogger)
+// middleware to show static content from the dist folder
+app.use(express.static('dist'))
+// middleware to parse JSON request body
+app.use(express.json())
 
 // define GET routes
 app.get('/', (request, response) => {
@@ -57,7 +56,6 @@ app.get('/api/notes/:id', (request, response) => {
 		response.json(note)
 	}
 	else {
-		//   curl -i -s http://localhost:3001/URL_ADDRESS
 		response.statusMessage = 'Note not found'
 		response.status(404).end()
 	}
