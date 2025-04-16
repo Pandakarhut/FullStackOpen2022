@@ -9,6 +9,9 @@ app.use(express.json())
 // middleware to enable CORS cross-origin resource sharing
 app.use(cors())
 
+// middleware to show static content from the dist folder
+app.use(express.static('dist'))
+
 let notes = [
 	{
 	  id: "1",
@@ -111,8 +114,14 @@ const generateId = () => {
 //   response.end('Hello World')
 // })
 
-// start the server
-const PORT = process.envPORT || 3001
+// start the server locally
+// const PORT = 3001
+// app.listen(PORT, () => {
+// 	console.log(`Server running on http://localhost:${PORT}`)
+// 	})
+
+// start the server on cloud
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
 console.log(`Server running on http://localhost:${PORT}`)
 })
